@@ -3,10 +3,6 @@
 
 cmake_minimum_required (VERSION 3.0.0)
 
-project (Reviewer)
+project (reviewer)
 
-add_executable(Reviewer src/main.cpp)
-
-target_include_directories(Reviewer PUBLIC include)
-
-
+subdirs(main_project)
