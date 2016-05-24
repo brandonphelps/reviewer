@@ -1,5 +1,6 @@
 # CMake
 CMakeFiles/
+CMakeScripts/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
@@ -8,3 +9,4 @@ Makefile
 Debug/
 Release/
 reviewer.build/
+reviewer.xcodeproj/
