@@ -1,0 +1,10 @@
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# X code
+Debug/
+Release/
+reviewer.build/
