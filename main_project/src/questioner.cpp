@@ -11,7 +11,7 @@ void Questioner::askQuestion()
 {
   float k = random() % m_booklet.getSize();
 
-  const Item& item = m_booklet.getItem(k);
+  Item& item = m_booklet.getItem(k);
 
   std::cout << item.getQuestion() << std::endl;
   std::string answer;
@@ -20,9 +20,14 @@ void Questioner::askQuestion()
   if(answer != item.getAnswer())
   {
     std::cout << "Wrong!" << std::endl;
+
+
+    std::cout << "Correct answer: " << item.getAnswer() << std::endl;
   }
   else
   {
     std::cout << "Correct!" << std::endl;
+    item.incCorrect();
   }
+  item.incAttempts();
 }

@@ -8,7 +8,7 @@
 #include "serializable.h"
 #include <string>
 
-class Item : Serializable
+class Item
 {
 public:
   Item(const std::string& question, const std::string& answer);
@@ -19,14 +19,15 @@ public:
   std::string getQuestion() const;
   std::string getAnswer() const;
 
-  std::string serialize()
+
+  void incAttempts()
   {
-    return getQuestion();
+    m_attempts++;
   }
 
-  void deserialize(const std::string& data)
+  void incCorrect()
   {
-    m_question = data;
+    m_correct++;
   }
 
 private:
@@ -34,8 +35,8 @@ private:
   int m_attempts; // number of tries to be answered correctly 
   int m_correct;  // number of times answered correctly
 
-  std::string m_question;
-  std::string m_answer;
+  const std::string m_question;
+  const std::string m_answer;
 };
 
 #endif

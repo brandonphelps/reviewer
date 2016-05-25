@@ -16,7 +16,7 @@ public:
 
   void addItem(const Item& i);
 
-  const Item& getItem(int i) const;
+  Item& getItem(int i) const;
 
   int getSize() const;
 

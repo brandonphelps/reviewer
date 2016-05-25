@@ -12,7 +12,7 @@
 
 int main(int argc, char* argv[])
 {
-  std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt";
+  std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
 
   time_t s;
   time(&s);

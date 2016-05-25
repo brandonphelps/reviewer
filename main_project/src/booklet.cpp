@@ -32,7 +32,7 @@ Booklet::Booklet(const Booklet& other)
   }
 }
 
-const Item& Booklet::getItem(int i) const
+Item& Booklet::getItem(int i) const
 {
   if(i < 0 || i >= m_itemlist.size())
   {
