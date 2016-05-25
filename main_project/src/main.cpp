@@ -14,14 +14,12 @@ int main(int argc, char* argv[])
 {
   std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt";
 
-  //srand(time(time_t));
-   
-    time_t s;
-    time(&s);
+  time_t s;
+  time(&s);
   
-    srand(s);
+  srand(s);
     
-    std::cout << s << std::endl;
+  std::cout << s << std::endl;
     
   parse(argc, argv);
 
@@ -29,7 +27,10 @@ int main(int argc, char* argv[])
 
   Questioner quizer(k);
   
-  quizer.askQuestion();
+  while(true)
+  {
+    quizer.askQuestion();
+  }
 
   return 0;
 }

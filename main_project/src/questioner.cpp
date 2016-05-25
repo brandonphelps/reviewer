@@ -4,19 +4,25 @@
 
 Questioner::Questioner(const Booklet& book) : m_booklet(book)
 {
+
 }
 
 void Questioner::askQuestion()
 {
-  for(int i = 0; i < 100; i++)
-  {
-    std::cout << "mah number: " << random() % 10 << std::endl;
-  }
-  float k = random() % 10;
+  float k = random() % m_booklet.getSize();
 
-  std::cout << "my number: " << k << std::endl;
-  std::cout << "my number: " << random() << std::endl;
-  std::cout << "my number: " << random() << std::endl;
-  std::cout << "my number: " << random() << std::endl;
-  std::cout << "my number: " << random() << std::endl;
+  const Item& item = m_booklet.getItem(k);
+
+  std::cout << item.getQuestion() << std::endl;
+  std::string answer;
+  std::cin >> answer;
+  
+  if(answer != item.getAnswer())
+  {
+    std::cout << "Wrong!" << std::endl;
+  }
+  else
+  {
+    std::cout << "Correct!" << std::endl;
+  }
 }

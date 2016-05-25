@@ -16,6 +16,10 @@ public:
 
   void addItem(const Item& i);
 
+  const Item& getItem(int i) const;
+
+  int getSize() const;
+
 private:
   std::vector<Item> m_itemlist;
   std::string m_filename;
