@@ -5,15 +5,29 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "serializable.h"
 #include <string>
 
-class Item
+class Item : Serializable
 {
 public:
   Item(const std::string& question, const std::string& answer);
 
+  // Description: Copy constructor
+  Item(const Item& i);
+
   std::string getQuestion() const;
   std::string getAnswer() const;
+
+  std::string serialize()
+  {
+    return getQuestion();
+  }
+
+  void deserialize(const std::string& data)
+  {
+    m_question = data;
+  }
 
 private:
 

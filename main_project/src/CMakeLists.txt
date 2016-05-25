@@ -1,4 +1,8 @@
 
 include_directories(${reviewer_SOURCE_DIR}/main_project/include)
 
-add_executable(main main.cpp booklet.cpp item.cpp prompt.cpp booklet_writer.cpp)
+aux_source_directory(. SOURCE)
+
+message(${SOURCE})
+
+add_executable(main ${SOURCE})

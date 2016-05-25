@@ -3,6 +3,8 @@
 #include <fstream>
 
 #include <vector>
+
+#include "questioner.h"
 #include "booklet.h"
 
 #include "prompt.h"
@@ -13,10 +15,11 @@ int main(int argc, char* argv[])
 
   parse(argc, argv);
 
-
   Booklet k(filename);
 
+  Questioner quizer(k);
   
+  quizer.askQuestion();
 
   return 0;
 }

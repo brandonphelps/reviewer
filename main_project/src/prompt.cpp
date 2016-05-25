@@ -10,6 +10,7 @@ bool parse(int argc, char* argv[])
   {
     std::cout << argv[i] << std::endl;
   }
+  return true;
 }
 
 

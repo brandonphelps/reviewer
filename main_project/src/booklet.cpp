@@ -1,9 +1,8 @@
 
-
 #include "booklet.h"
 #include "item.h"
 
-Booklet::Booklet(const std::string& filename)
+Booklet::Booklet(const std::string& filename) : m_filename(filename)
 {
   std::ifstream infile(filename);
 
@@ -14,10 +13,7 @@ Booklet::Booklet(const std::string& filename)
   {
     while(getline(infile, question))
     {
-      std::cout << "Q: " << question << std::endl;
       getline(infile, answer);
-      std::cout << "A: " << answer << std::endl;
-
       addItem(Item(question, answer));
     }
   }
@@ -25,8 +21,16 @@ Booklet::Booklet(const std::string& filename)
   infile.close();
 }
 
+Booklet::Booklet(const Booklet& other)
+{
+  m_filename = other.m_filename;
+  for(int i = 0; i < other.m_itemlist.size(); i++)
+  {
+    addItem(other.m_itemlist[i]);
+  }
+}
+
 void Booklet::addItem(const Item& i)
 {
-  std::cout << "Adding item: " << i << std::endl;
-  m_itemlist.push_back(i);
+  m_itemlist.push_back(Item(i));
 }
