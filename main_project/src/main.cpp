@@ -14,9 +14,15 @@ int main(int argc, char* argv[])
 {
   std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt";
 
-  srand(time(time()));
-
-
+  //srand(time(time_t));
+   
+    time_t s;
+    time(&s);
+  
+    srand(s);
+    
+    std::cout << s << std::endl;
+    
   parse(argc, argv);
 
   Booklet k(filename);
