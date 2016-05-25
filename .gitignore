@@ -10,3 +10,6 @@ Debug/
 Release/
 reviewer.build/
 reviewer.xcodeproj/
+
+# main
+main
