@@ -5,15 +5,24 @@
 
 #include "booklet.h"
 
+#include <vector>
+
 class Questioner
 {
 public:
-  Questioner(const Booklet& book);
+
+  Questioner();
+
+  void addBooklet(const Booklet& book);
 
   void askQuestion();
 
+  void performReview();
+
+  void save();
+  
 private:
-  Booklet m_booklet;
+  std::vector<Booklet> m_booklets;
   
 };
 

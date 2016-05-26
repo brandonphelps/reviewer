@@ -5,7 +5,7 @@ i
 エ
 e
 ウ
-i
+u
 オ
 o
 カ
@@ -22,7 +22,7 @@ ko
 sa
 シ
 shi
-ツ
+ス
 su
 セ
 se
@@ -38,3 +38,13 @@ tsu
 te
 ト
 to
+ナ
+na
+ニ
+ni
+ヌ
+nu
+ネ
+ne
+ノ
+no

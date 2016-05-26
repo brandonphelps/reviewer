@@ -15,22 +15,20 @@ int main(int argc, char* argv[])
   std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
 
   time_t s;
-  time(&s);
-  
+  s = time(NULL);
+
   srand(s);
     
-  std::cout << s << std::endl;
+  std::cout << "Current seed: " << s << std::endl;
     
   parse(argc, argv);
 
-  Booklet k(filename);
+  Questioner quizer;
 
-  Questioner quizer(k);
-  
-  while(true)
-  {
-    quizer.askQuestion();
-  }
+  quizer.addBooklet(Booklet(filename));
+  quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt"));
+
+  quizer.performReview();
 
   return 0;
 }

@@ -14,17 +14,27 @@ public:
   Booklet(const std::string& filename);
   Booklet(const Booklet& other);
 
-  void addItem(const Item& i);
-
-  Item& getItem(int i) const;
+  Item& getItem(int i);
+  const Item& getItem(int i) const;
 
   int getSize() const;
 
+  std::vector<int> needReviews();
+
+  // Description: Loads all other information for the each of the items from a data file
+  void loadItemInformation();
+
+
+  void saveItemInformation();
+
+private:
+
 private:
   std::vector<Item> m_itemlist;
+
   std::string m_filename;
 };
 
-std::ostream& operator<<(std::ostream& out, const Item& item);
+std::ostream& operator<<(std::ostream& out, const Booklet& book);
 
 #endif

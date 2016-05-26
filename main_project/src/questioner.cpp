@@ -2,32 +2,78 @@
 #include <random>
 #include "questioner.h"
 
-Questioner::Questioner(const Booklet& book) : m_booklet(book)
+Questioner::Questioner()
 {
+}
 
+void Questioner::addBooklet(const Booklet& book)
+{
+  m_booklets.push_back(book);
 }
 
 void Questioner::askQuestion()
 {
-  float k = random() % m_booklet.getSize();
+  float randBooklet = random() % m_booklets.size();
 
-  Item& item = m_booklet.getItem(k);
+  float k = random() % m_booklets[randBooklet].getSize();
 
-  std::cout << item.getQuestion() << std::endl;
-  std::string answer;
-  std::cin >> answer;
-  
-  if(answer != item.getAnswer())
+  Item& item = m_booklets[randBooklet].getItem(k);
+
+  item.askQuestion();
+}
+
+void Questioner::performReview()
+{
+  std::cout << "Performing Review" << std::endl;
+  std::vector<Item*> items;
+
+  for(int i = 0; i < m_booklets.size(); i++)
   {
-    std::cout << "Wrong!" << std::endl;
-
-
-    std::cout << "Correct answer: " << item.getAnswer() << std::endl;
+    for(int j = 0; j < m_booklets[i].getSize(); j++)
+    {
+      if(m_booklets[i].getItem(j).needsReview())
+      {
+        items.push_back(&m_booklets[i].getItem(j));
+      }
+    }
   }
-  else
+
+  // randomize the selection order of the items
+
+  for(int i = 1; i < items.size(); i++)
   {
-    std::cout << "Correct!" << std::endl;
-    item.incCorrect();
+    int rand_index = rand() % i;
+
+    std::cout << "Rand index: " << rand_index << std::endl;
+    Item* temp = items[i];
+    
+    items[i] = items[rand_index];
+    items[rand_index] = temp;
   }
-  item.incAttempts();
+
+
+  bool saved = false;
+
+  for(int i = 0; i < items.size(); i++)
+  {
+    items[i]->askQuestion();
+    saved = false;
+    if(i % 5 == 0)
+    {
+      save();
+      saved = true;
+    }
+  }
+  if(!saved)
+  {
+    save();
+  } 
+}
+
+void Questioner::save()
+{
+  for(int i = 0; i < m_booklets.size(); i++)
+  {
+    m_booklets[i].saveItemInformation();
+  }
 }
