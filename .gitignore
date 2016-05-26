@@ -11,5 +11,7 @@ Release/
 reviewer.build/
 reviewer.xcodeproj/
 
+main.dSYM/
+
 # main
 main
