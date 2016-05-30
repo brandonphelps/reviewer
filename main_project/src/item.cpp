@@ -10,6 +10,7 @@ Item::Item(const std::string& question, const std::string& answer) : m_attempts(
                                                                      m_correct(0),
                                                                      m_level(0),
                                                                      m_succession_correct(0),
+                                                                     m_next_apperance(0),
                                                                      m_asked_timestamp(0),
                                                                      m_scheduled_timestamp(0),
                                                                      m_question(question),
@@ -22,6 +23,7 @@ Item::Item(const Item& other) : m_attempts(other.m_attempts),
                                 m_correct(other.m_correct),
                                 m_level(other.m_level),
                                 m_succession_correct(other.m_succession_correct),
+                                m_next_apperance(other.m_next_apperance),
                                 m_asked_timestamp(other.m_asked_timestamp),
                                 m_scheduled_timestamp(other.m_scheduled_timestamp),
                                 m_question(other.m_question),
@@ -99,24 +101,30 @@ void Item::askQuestion()
 
 bool Item::needsReview()
 {
+  return needsReview(0);
+}
+
+bool Item::needsReview(int range)
+{
   time_t current_time;
   time(&current_time);
 
-  if(current_time - m_scheduled_timestamp <= 0)
+  if(m_scheduled_timestamp - current_time <= range)
   {
-    return false;
+    return true;
   }
   else
   {
-    return true;
+    return false;
   }
 }
 
 void Item::scheduleNextReview()
 {
-  m_scheduled_timestamp = m_asked_timestamp + computeTime(m_level, m_succession_correct);
-}
+  m_next_apperance = computeTime(m_level, m_succession_correct);
 
+  m_scheduled_timestamp = m_asked_timestamp + m_next_apperance;
+}
 
 std::ostream& operator<<(std::ostream& out, const Item& item)
 {

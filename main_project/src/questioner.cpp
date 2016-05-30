@@ -39,18 +39,14 @@ void Questioner::performReview()
   }
 
   // randomize the selection order of the items
-
   for(int i = 1; i < items.size(); i++)
   {
     int rand_index = rand() % i;
 
-    std::cout << "Rand index: " << rand_index << std::endl;
     Item* temp = items[i];
-    
     items[i] = items[rand_index];
     items[rand_index] = temp;
   }
-
 
   bool saved = false;
 
@@ -64,10 +60,16 @@ void Questioner::performReview()
       saved = true;
     }
   }
+
   if(!saved)
   {
     save();
-  } 
+  }
+
+  if(items.size() == 0)
+  {
+    nextItems();
+  }
 }
 
 void Questioner::save()
@@ -76,4 +78,22 @@ void Questioner::save()
   {
     m_booklets[i].saveItemInformation();
   }
+}
+
+void Questioner::nextItems()
+{
+  std::cout << "Checking for next items" << std::endl;
+  int count = 0;
+  for(int i = 0; i < m_booklets.size(); i++)
+  {
+    for(int j = 0; j < m_booklets[i].getSize(); j++)
+    {
+      if(m_booklets[i].getItem(j).needsReview(600))
+      {
+        std::cout << "Item" << std::endl << m_booklets[i].getItem(j) << std::endl;
+        count++;
+      }
+    }
+  }
+  std::cout << "Items to review in 10 minutes: " << count << std::endl;
 }

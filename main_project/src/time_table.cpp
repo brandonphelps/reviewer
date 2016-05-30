@@ -16,9 +16,6 @@ int data_map_width = 6;
 
 int computeTime(int x, int y)
 {
-  std::cout << "Adding time" << std::endl;
-  std::cout << "level: " << x << " succession: " << y << std::endl;
-
   std::cout << "Adding: " << data_map[x * data_map_width + y] << std::endl;
   
   return data_map[x * data_map_width + y];

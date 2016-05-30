@@ -23,8 +23,7 @@ public:
 
   // Description: Loads all other information for the each of the items from a data file
   void loadItemInformation();
-
-
+  
   void saveItemInformation();
 
 private:

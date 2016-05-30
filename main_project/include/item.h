@@ -44,12 +44,12 @@ public:
   void askQuestion();
 
   bool needsReview();
+  bool needsReview(int range);
 
   friend std::istream& operator>>(std::istream& in, Item& item);
 
 private:
   void scheduleNextReview();
-
 
 private:
 
@@ -59,6 +59,8 @@ private:
   int m_level;
   int m_succession_correct; // number of times answered correctly in succession
   int m_succession_wrong;
+
+  int m_next_apperance; // number of seconds of when the item should appear again. 
   
   // Description: time stamp for when the question was asked.
   //              time in seconds since epoch 

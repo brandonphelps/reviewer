@@ -20,6 +20,9 @@ public:
   void performReview();
 
   void save();
+
+  // Description: List number of items that will be in review in a 5 minutes
+  void nextItems();
   
 private:
   std::vector<Booklet> m_booklets;

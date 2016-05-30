@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 
   quizer.addBooklet(Booklet(filename));
   quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt"));
+  quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/kanji1.txt"));
 
   quizer.performReview();
 
