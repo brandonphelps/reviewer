@@ -3,6 +3,7 @@
 #include <fstream>
 #include <random>
 #include <vector>
+#include <git2.h>
 
 
 #include "questioner.h"
@@ -13,6 +14,8 @@
 int main(int argc, char* argv[])
 {
   std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
+
+  git_libgit2_init();
 
   time_t s;
   s = time(NULL);
