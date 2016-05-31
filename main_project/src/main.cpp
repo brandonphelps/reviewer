@@ -7,6 +7,7 @@
 
 
 #include "questioner.h"
+#include "book.h"
 #include "booklet.h"
 
 #include "prompt.h"
@@ -17,6 +18,13 @@ int main(int argc, char* argv[])
 
   git_libgit2_init();
 
+  Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
+
+  //b.download("https://github.com/brandonphelps/Arctic");
+
+  b.download("/Users/Elemental/Desktop/ja");
+
+  /*
   time_t s;
   s = time(NULL);
 
@@ -33,6 +41,6 @@ int main(int argc, char* argv[])
   quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/kanji1.txt"));
 
   quizer.performReview();
-
+  */
   return 0;
 }
