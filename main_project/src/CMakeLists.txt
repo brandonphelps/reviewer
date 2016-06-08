@@ -9,10 +9,20 @@ aux_source_directory(. SOURCE)
 
 find_package(libgit2)
 
+message(STATUS "find package cpp json")
+find_package(cppjson)
+
+# get_target_property(tssss cppjson IMPORTED_LOCATION_NOCONFIG)
+message(STATUS "adding cppjson lib")
+
+
+
+message(${CMAKE_MODULE_PATH})
+
 add_executable(${TARGET} ${SOURCE})
 
-target_link_libraries(${TARGET} ${cppjson_lib})
 
+target_link_libraries(${TARGET} ${cppjson_lib})
 
 if(LIBGIT2_FOUND)
   message(${LIBGIT2_LIBRARIES})
