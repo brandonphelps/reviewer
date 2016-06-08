@@ -5,12 +5,13 @@
 #include <vector>
 #include <git2.h>
 
-
 #include "questioner.h"
 #include "book.h"
 #include "booklet.h"
 
 #include "prompt.h"
+
+#include <json_parser.h>
 
 int main(int argc, char* argv[])
 {
@@ -18,11 +19,15 @@ int main(int argc, char* argv[])
 
   git_libgit2_init();
 
+  JsonParser p;
+
   Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
 
   //b.download("https://github.com/brandonphelps/Arctic");
 
-  b.download("/Users/Elemental/Desktop/ja");
+  //b.download("/Users/Elemental/Desktop/ja");
+
+  b.load_config();
 
   /*
   time_t s;

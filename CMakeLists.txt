@@ -1,9 +1,20 @@
-
-
-
 cmake_minimum_required (VERSION 3.0.0)
 
-project (reviewer)
+include(ExternalProject)
+
+
+ExternalProject_Add(
+  cppjson
+  GIT_REPOSITORY "https://github.com/brandonphelps/my_cppjson"
+  GIT_TAG "master"
+
+  INSTALL_COMMAND ""
+)
+
+project(reviewer)
+
+set(cppjson_include "${reviewer_SOURCE_DIR}/cppjson-prefix/src/cppjson/main_project/include")
+set(cppjson_lib "${reviewer_SOURCE_DIR}/cppjson-prefix/src/cppjson-build/main_project/src/libcppjson.dylib")
 
 set(TARGET main)
 

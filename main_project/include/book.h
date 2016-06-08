@@ -11,6 +11,8 @@ public:
   Book(std::string path_name);
   void download(std::string remote_name);
   void download_progress(std::string remote_name);
+  void load_config();
+
 private:
 
   static int fetch_progress(const git_transfer_progress *stats, void *payload);
@@ -27,6 +29,8 @@ private:
   } progress_data;
 
   std::string m_local_path;
+
+  std::string m_config_filename;
 };
 
 #endif

@@ -4,10 +4,11 @@
 #include <git2.h> 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 Book::Book(std::string path_name) : m_local_path(path_name)
 {
-  
+  m_config_filename = m_local_path + "/config.txt";
 }
 
 void Book::download(std::string remote_name)
@@ -45,6 +46,26 @@ void Book::download_progress(std::string remote_name)
   git_repository_free(repo);
 }
 
+void Book::load_config()
+{
+  std::ifstream config_file(m_config_filename);
+
+  std::string line;
+
+  if(config_file.is_open())
+  {
+    while(getline(config_file, line))
+    {
+      std::cout << line << std::endl;
+    }      
+  }
+  else
+  {
+    std::cout << "Unable to read: " << m_config_filename << std::endl;
+  }
+
+  config_file.close();
+}
 
 int Book::fetch_progress(const git_transfer_progress *stats, void *payload)
 {
