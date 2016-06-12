@@ -3,7 +3,7 @@
 #include <fstream>
 #include <random>
 #include <vector>
-#include <git2.h>
+// #include <git2.h>
 
 #include "questioner.h"
 #include "book.h"
@@ -11,21 +11,23 @@
 
 #include "prompt.h"
 
-#include <json_parser.h>
+#include "json_parser.h"
 
 int main(int argc, char* argv[])
 {
   std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
 
-  git_libgit2_init();
+  //git_libgit2_init();
 
-  JsonParser p;
+  //JsonParser p;
 
   Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
 
   //b.download("https://github.com/brandonphelps/Arctic");
 
   //b.download("/Users/Elemental/Desktop/ja");
+  
+  std::cout << "Book loading config" << std::endl;
 
   b.load_config();
 
