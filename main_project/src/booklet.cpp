@@ -17,11 +17,17 @@ Booklet::Booklet(const std::string& filename) : m_filename(filename)
     while(getline(infile, question))
     {
       getline(infile, answer);
+      std::cout << "Adding item" << std::endl;
       m_itemlist.push_back(Item(question, answer));
     }
+    loadItemInformation();
+  }
+  else
+  {
+    std::cout << "Could not find booklet " << filename << std::endl;
   }
 
-  loadItemInformation();
+
 
   infile.close();
 }
