@@ -15,6 +15,13 @@
 
 int main(int argc, char* argv[])
 {
+  std::cout << "Hello World!" << std::endl;
+  std::cout << "Args" << std::endl;
+  std::cout << argc << std::endl;
+  for(int i = 0; i < argc; i++)
+  {
+    std::cout << argv[i] << std::endl;
+  }
   //std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
   //git_libgit2_init();
   //JsonParser p;
@@ -25,7 +32,7 @@ int main(int argc, char* argv[])
 
   //b.download("/Users/Elemental/Desktop/ja");
   
-  //std::cout << "Book loading config" << std::endl;
+  std::cout << "Book loading config" << std::endl;
 
   //b.load_config();
   /*
