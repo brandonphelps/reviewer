@@ -7,7 +7,7 @@
 
 Booklet::Booklet(const std::string& filename) : m_filename(filename)
 {
-  std::ifstream infile(filename);
+  std::ifstream infile(filename.c_str());
 
   std::string answer;
   std::string question;
