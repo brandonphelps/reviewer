@@ -68,8 +68,8 @@ private:
 
   time_t m_scheduled_timestamp;
 
-  const std::string m_question;
-  const std::string m_answer;
+  std::string m_question;
+  std::string m_answer;
 
 };
 

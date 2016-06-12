@@ -2,7 +2,7 @@
 #include "booklet.h"
 #include "item.h"
 
-
+#include <stdexcept>
 #include <exception>
 
 Booklet::Booklet(const std::string& filename) : m_filename(filename)
@@ -77,7 +77,7 @@ std::vector<int> Booklet::needReviews()
 void Booklet::loadItemInformation()
 {
   std::string datafile = m_filename + ".dat";
-  std::ifstream infile(datafile);
+  std::ifstream infile(datafile.c_str());
 
   std::string line;
 
@@ -105,7 +105,7 @@ void Booklet::saveItemInformation()
 {
   std::string datafile = m_filename + ".dat";
 
-  std::ofstream outfile(datafile);
+  std::ofstream outfile(datafile.c_str());
 
 
   for(int i = 0 ; i < m_itemlist.size(); i++)

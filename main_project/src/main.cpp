@@ -19,15 +19,15 @@ int main(int argc, char* argv[])
   //git_libgit2_init();
   //JsonParser p;
 
-  Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
+  //Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
 
   //b.download("https://github.com/brandonphelps/Arctic");
 
   //b.download("/Users/Elemental/Desktop/ja");
   
-  std::cout << "Book loading config" << std::endl;
+  //std::cout << "Book loading config" << std::endl;
 
-  b.load_config();
+  //b.load_config();
   /*
   time_t s;
   s = time(NULL);

@@ -1,7 +1,7 @@
 
 #include "item.h"
 #include "time_table.h"
-
+#include <time.h>
 #include <iostream>
 
 // dood duud

@@ -13,9 +13,9 @@ void Questioner::addBooklet(const Booklet& book)
 
 void Questioner::askQuestion()
 {
-  float randBooklet = random() % m_booklets.size();
+  float randBooklet = rand() % m_booklets.size();
 
-  float k = random() % m_booklets[randBooklet].getSize();
+  float k = rand() % m_booklets[randBooklet].getSize();
 
   Item& item = m_booklets[randBooklet].getItem(k);
 
