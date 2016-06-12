@@ -5,7 +5,7 @@ include_directories(${cppjson_include})
 
 aux_source_directory(. SOURCE)
 
-find_package(libgit2)
+# find_package(libgit2)
 
 message(STATUS "CPP JSON INCLUDE ${CppJson_INCLUDE_DIR}")
 
