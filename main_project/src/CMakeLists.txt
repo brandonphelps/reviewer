@@ -18,8 +18,8 @@ if(APPLE)
 endif(APPLE)
 
 if(MINGW)
-  message(STATUS "Detected MINGW using .a")
-  target_link_libraries(${TARGET} "${cppjson_lib}.a")
+  message(STATUS "Detected MINGW using .dll")
+  target_link_libraries(${TARGET} "${cppjson_lib}.dll")
 endif(MINGW)
 
 if(LIBGIT2_FOUND)
