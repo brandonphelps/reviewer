@@ -4,8 +4,9 @@ include(ExternalProject)
 
 project(reviewer)
 
-set(cppjson_source "${reviewer_SOURCE_DIR}/cppjson/src/cppjson/main_project/src")
 
+set(cppjson_include "${reviewer_SOURCE_DIR}/cppjson/main_project/include")
+set(cppjson_lib "${reviewer_SOURCE_DIR}/build/cppjson/main_project/src/libcppjson")
 set(TARGET main)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
