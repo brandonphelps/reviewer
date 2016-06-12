@@ -2,10 +2,13 @@
 #ifndef BOOK_H
 #define BOOK_H
 
-#include <string>
-#include <git2.h>
-
 #define GIT_INSTALLED 0
+
+#include <string>
+#if GIT_INSTALLED
+#include <git2.h>
+#endif
+
 
 class Book
 {
