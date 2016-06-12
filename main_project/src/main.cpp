@@ -22,9 +22,29 @@ int main(int argc, char* argv[])
   {
     std::cout << argv[i] << std::endl;
   }
+
   //std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
   //git_libgit2_init();
-  //JsonParser p;
+  JsonParser p;
+
+  if(argc != 2)
+  {
+    std::cout << "Please specify a reviewer config file" << std::endl;
+  }
+  else
+  {
+    std::cout << "Using reviewer config : " << argv[1] << std::endl;
+    std::map<std::string, std::string> reviewer_config = p.parse(argv[1]);
+    std::map<std::string, std::string>::iterator it;
+    for(it = reviewer_config.begin(); it != reviewer_config.end(); ++it)
+    {
+      std::cout << it->first << " : " << it->second << std::endl;
+    }
+    Booklet b(reviewer_config["book 1"]);
+    Questioner quizzer;
+    quizzer.addBooklet(b);
+    quizzer.performReview();
+  }
 
   //Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
 
