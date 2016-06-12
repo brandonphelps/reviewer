@@ -55,7 +55,7 @@ void Book::download_progress(std::string remote_name)
 
 void Book::load_config()
 {
-  std::ifstream config_file(m_config_filename);
+  std::ifstream config_file(m_config_filename.c_str());
 
   std::string line;
 
