@@ -10,8 +10,10 @@
 #include "booklet.h"
 
 #include "prompt.h"
+#include "booklet_config.h"
 
 #include "json_parser.h"
+
 
 int main(int argc, char* argv[])
 {
@@ -25,6 +27,7 @@ int main(int argc, char* argv[])
 
   //std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
   //git_libgit2_init();
+  /*
   JsonParser p;
 
   if(argc != 2)
@@ -45,7 +48,7 @@ int main(int argc, char* argv[])
     quizzer.addBooklet(b);
     quizzer.performReview();
   }
-
+  */
   //Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
 
   //b.download("https://github.com/brandonphelps/Arctic");
@@ -53,6 +56,30 @@ int main(int argc, char* argv[])
   //b.download("/Users/Elemental/Desktop/ja");
   
   std::cout << "Book loading config" << std::endl;
+
+  JsonDict d;
+
+  d.setString("a", "b");
+
+  std::vector<std::string> k_value;
+
+  k_value.push_back("a");
+  k_value.push_back("b");
+  k_value.push_back("c");
+  k_value.push_back("d");
+
+  d.setArray("b", k_value);
+
+  std::cout << d.getString("a") << std::endl;
+
+  std::vector<std::string> r_value = d.getArray("b");
+
+  std::cout << "I contain" << std::endl;
+  for(int i = 0; i < r_value.size(); i++)
+  {
+    std::cout << r_value[i] << std::endl;
+  }
+
 
   //b.load_config();
   /*

@@ -70,7 +70,6 @@ void Book::load_config()
   {
     std::cout << "Unable to read: " << m_config_filename << std::endl;
   }
-
   config_file.close();
 }
 

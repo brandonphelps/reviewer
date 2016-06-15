@@ -7,7 +7,9 @@
 #include <vector>
 
 #include "item.h"
+#include "booklet_config.h"
 
+// a Booklet will contain one or many chapters
 class Booklet
 {
 public:
@@ -32,6 +34,9 @@ private:
   std::vector<Item> m_itemlist;
 
   std::string m_filename;
+  std::string m_folder;
+
+  BookletConfig m_bookletconfig;
 };
 
 std::ostream& operator<<(std::ostream& out, const Booklet& book);

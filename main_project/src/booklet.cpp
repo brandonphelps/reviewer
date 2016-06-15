@@ -5,8 +5,11 @@
 
 #include <exception>
 
-Booklet::Booklet(const std::string& filename) : m_filename(filename)
+Booklet::Booklet(const std::string& folder) : m_folder(folder),
+                                              m_bookletconfig(m_folder)
 {
+  std::cout << "Book config folder: " << m_folder << std::endl;
+  /*
   std::ifstream infile(filename.c_str());
 
   std::string answer;
@@ -27,14 +30,13 @@ Booklet::Booklet(const std::string& filename) : m_filename(filename)
     std::cout << "Could not find booklet " << filename << std::endl;
   }
 
-
-
   infile.close();
+  */
 }
 
-Booklet::Booklet(const Booklet& other)
+Booklet::Booklet(const Booklet& other) : m_filename(other.m_filename),
+                                         m_bookletconfig(m_filename)
 {
-  m_filename = other.m_filename;
   for(int i = 0; i < other.m_itemlist.size(); i++)
   {
     m_itemlist.push_back(other.m_itemlist[i]);

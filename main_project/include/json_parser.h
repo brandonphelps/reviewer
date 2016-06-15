@@ -8,6 +8,8 @@
 #include <map>
 #include <vector>
 
+#include "json_dict.h"
+
 class JsonParser
 {
 public:

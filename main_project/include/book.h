@@ -9,7 +9,8 @@
 #include <git2.h>
 #endif
 
-
+// Used specifically for downloading a "collection of booklets"
+//   however is not a collection of booklets
 class Book
 {
 public:
