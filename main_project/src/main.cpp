@@ -47,12 +47,9 @@ int main(int argc, char* argv[])
       std::cout << book2[i] << std::endl;
     }
     std::cout << "book 3" << reviewer_config.getString("book 3") << std::endl;
-    Booklet b(reviewer_config.getString("book 1"));
-    /*
     Questioner quizzer;
-    quizzer.addBooklet(b);
+    quizzer.addBooklet(Booklet(reviewer_config.getString("book 1")));
     quizzer.performReview();
-    */
   }
   return 0;
 }

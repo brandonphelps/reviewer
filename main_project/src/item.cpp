@@ -91,6 +91,10 @@ void Item::askQuestion()
     {
       m_succession_wrong = 0;
       m_level--;
+      if(m_level < 0)
+      {
+        m_level = 0;
+      }
     }
   }
   incAttempts();

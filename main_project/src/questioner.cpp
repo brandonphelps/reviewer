@@ -8,6 +8,7 @@ Questioner::Questioner()
 
 void Questioner::addBooklet(const Booklet& book)
 {
+  std::cout << "Adding booklet" << std::endl;
   m_booklets.push_back(book);
 }
 
@@ -83,17 +84,23 @@ void Questioner::save()
 void Questioner::nextItems()
 {
   std::cout << "Checking for next items" << std::endl;
-  int count = 0;
+  int ten_count = 0;
+  int five_count = 0;
   for(int i = 0; i < m_booklets.size(); i++)
   {
     for(int j = 0; j < m_booklets[i].getSize(); j++)
     {
+      if(m_booklets[i].getItem(j).needsReview(300))
+      {
+        five_count++;
+      }
       if(m_booklets[i].getItem(j).needsReview(600))
       {
         std::cout << "Item" << std::endl << m_booklets[i].getItem(j) << std::endl;
-        count++;
+        ten_count++;
       }
     }
   }
-  std::cout << "Items to review in 10 minutes: " << count << std::endl;
+  std::cout << "Items to review in 5 minutes: " << five_count << std::endl;
+  std::cout << "Items to review in 10 minutes: " << ten_count << std::endl;
 }

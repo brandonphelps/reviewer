@@ -10,39 +10,72 @@ Booklet::Booklet(const std::string& folder) : m_folder(folder),
 {
   std::cout << "Loading first chapter" << std::endl;
 
-  for(int i = 0; i < m_bookletconfig.getChapters().size(); i++)
+  double level_count = 0;
+  double total_count = 0;
+
+  int chapter_level = 1;
+
+  bool add_next_chapter = true;
+
+  for(int i = 0; (i < m_bookletconfig.getChapters().size()) && add_next_chapter; i++)
   {
     std::cout << m_folder + "/" + m_bookletconfig.getChapters()[i] << std::endl;
-  }
+    std::string filename = m_folder + "/" + m_bookletconfig.getChapters()[i];
 
-  /*
-  std::ifstream infile(filename.c_str());
+    std::ifstream infile(filename.c_str());
+    std::string answer;
+    std::string question;
 
-  std::string answer;
-  std::string question;
-
-  if(infile.is_open())
-  {
-    while(getline(infile, question))
+    if(infile.is_open())
     {
-      getline(infile, answer);
-      std::cout << "Adding item" << std::endl;
-      m_itemlist.push_back(Item(question, answer));
-    }
-    loadItemInformation();
-  }
-  else
-  {
-    std::cout << "Could not find booklet " << filename << std::endl;
-  }
+      while(getline(infile, question))
+      {
+        getline(infile, answer);
 
-  infile.close();
-  */
+        Item current_item(question, answer);
+        
+        // if current chapter is less than the chapter level add the item
+        if(i < chapter_level)
+        {
+          m_itemlist.push_back(current_item);
+        }
+        else // if not then we have reach the limit possible thus stop checking items
+        {
+          add_next_chapter = false;
+        }
+      }
+      loadItemInformation();
+      level_count = 0;
+      total_count = 0;
+      std::cout << "Checking Item info" << std::endl;
+      for(int j = 0; j < m_itemlist.size(); j++)
+      {
+        std::cout << m_itemlist[j] << std::endl;
+        if(m_itemlist[j].getLevel() >= 1)
+        {
+          level_count++;
+        }
+        total_count++;
+      }
+      if((level_count / total_count) >= 0.8)
+      {
+        chapter_level++;
+      }
+      std::cout << "Total level two and over: " << (level_count / total_count) << std::endl;
+      std::cout << "Level count " << level_count << " : " << total_count << std::endl;
+    }
+    else
+    {
+      std::cout << "Could not find booklet " << filename << std::endl;
+    }
+    infile.close();
+  }
 }
 
-Booklet::Booklet(const Booklet& other) : m_filename(other.m_filename),
-                                         m_bookletconfig(m_filename)
+Booklet::Booklet(const Booklet& other) : m_folder(other.m_folder),
+                                         m_bookletconfig(m_folder)
 {
+  std::cout << "Booklet Copy constructor" << std::endl;
   for(int i = 0; i < other.m_itemlist.size(); i++)
   {
     m_itemlist.push_back(other.m_itemlist[i]);
@@ -90,7 +123,7 @@ std::vector<int> Booklet::needReviews()
 
 void Booklet::loadItemInformation()
 {
-  std::string datafile = m_filename + ".dat";
+  std::string datafile = m_folder + ".dat";
   std::ifstream infile(datafile);
 
   std::string line;
@@ -117,7 +150,7 @@ void Booklet::loadItemInformation()
 
 void Booklet::saveItemInformation()
 {
-  std::string datafile = m_filename + ".dat";
+  std::string datafile = m_folder + ".dat";
 
   std::ofstream outfile(datafile);
 

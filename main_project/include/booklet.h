@@ -33,7 +33,6 @@ private:
 private:
   std::vector<Item> m_itemlist;
 
-  std::string m_filename;
   std::string m_folder;
 
   BookletConfig m_bookletconfig;

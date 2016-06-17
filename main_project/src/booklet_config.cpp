@@ -7,6 +7,7 @@
 
 BookletConfig::BookletConfig(const std::string& book_folder) : m_filename(book_folder + "/config.json")
 {
+  std::cout << "Booklet Config Constructor: " << m_filename << std::endl;
   load_config();
 }
 
@@ -17,6 +18,8 @@ std::vector<std::string> BookletConfig::getChapters()
 
 void BookletConfig::load_config()
 {
+  std::cout << "Booklet Loading config" << std::endl;
+
   JsonParser p;
   std::cout << "Attempting to parse file: " << m_filename << std::endl;
   JsonDict data = p.parse(m_filename);
