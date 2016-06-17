@@ -1,3 +1,6 @@
 { "Project Name" : "Reviewer",
-  "book 1" : "/Users/Elemental/Documents/Projects/reviewer/book/ja"
+  "book 1" : "/Users/Elemental/Documents/Projects/reviewer/book/ja",
+  "book 2" : ["hello", "world", "I", "like", "coconuts"],
+  "book 3" : "WOOOOT!",
+  "library" : "/Users/Elemental/Documents/Projects/reviewer/library/"
 }

@@ -8,7 +8,13 @@
 Booklet::Booklet(const std::string& folder) : m_folder(folder),
                                               m_bookletconfig(m_folder)
 {
-  std::cout << "Book config folder: " << m_folder << std::endl;
+  std::cout << "Loading first chapter" << std::endl;
+
+  for(int i = 0; i < m_bookletconfig.getChapters().size(); i++)
+  {
+    std::cout << m_folder + "/" + m_bookletconfig.getChapters()[i] << std::endl;
+  }
+
   /*
   std::ifstream infile(filename.c_str());
 

@@ -27,8 +27,6 @@ int main(int argc, char* argv[])
 
   //std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
   //git_libgit2_init();
-  /*
-  JsonParser p;
 
   if(argc != 2)
   {
@@ -36,68 +34,25 @@ int main(int argc, char* argv[])
   }
   else
   {
+    JsonParser p;
     std::cout << "Using reviewer config : " << argv[1] << std::endl;
-    std::map<std::string, std::string> reviewer_config = p.parse(argv[1]);
-    std::map<std::string, std::string>::iterator it;
-    for(it = reviewer_config.begin(); it != reviewer_config.end(); ++it)
+
+    JsonDict reviewer_config = p.parse(argv[1]);
+    std::cout << "Project name : " << reviewer_config.getString("Project Name") << std::endl;
+
+    std::vector<std::string> book2 = reviewer_config.getArray("book 2");
+    std::cout << "Book2" << std::endl;
+    for(int i = 0; i < book2.size(); i++)
     {
-      std::cout << it->first << " : " << it->second << std::endl;
+      std::cout << book2[i] << std::endl;
     }
-    Booklet b(reviewer_config["book 1"]);
+    std::cout << "book 3" << reviewer_config.getString("book 3") << std::endl;
+    Booklet b(reviewer_config.getString("book 1"));
+    /*
     Questioner quizzer;
     quizzer.addBooklet(b);
     quizzer.performReview();
+    */
   }
-  */
-  //Book b("/Users/Elemental/Documents/Projects/reviewer/book/tmp");
-
-  //b.download("https://github.com/brandonphelps/Arctic");
-
-  //b.download("/Users/Elemental/Desktop/ja");
-  
-  std::cout << "Book loading config" << std::endl;
-
-  JsonDict d;
-
-  d.setString("a", "b");
-
-  std::vector<std::string> k_value;
-
-  k_value.push_back("a");
-  k_value.push_back("b");
-  k_value.push_back("c");
-  k_value.push_back("d");
-
-  d.setArray("b", k_value);
-
-  std::cout << d.getString("a") << std::endl;
-
-  std::vector<std::string> r_value = d.getArray("b");
-
-  std::cout << "I contain" << std::endl;
-  for(int i = 0; i < r_value.size(); i++)
-  {
-    std::cout << r_value[i] << std::endl;
-  }
-
-
-  //b.load_config();
-  /*
-  time_t s;
-  s = time(NULL);
-
-  srand(s);
-    
-  std::cout << "Current seed: " << s << std::endl;
-    
-  parse(argc, argv);
-
-  Questioner quizer;
-
-  quizer.addBooklet(Booklet(filename));
-  quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/hiragana.txt"));
-  quizer.addBooklet(Booklet("/Users/Elemental/Documents/Projects/reviewer/book/ja/kanji1.txt"));
-  quizer.performReview();
-  */
   return 0;
 }

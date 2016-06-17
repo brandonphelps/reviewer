@@ -11,11 +11,15 @@ JsonParser::JsonParser()
   m_symbol_vector.push_back(TokenId::rbrace);
   m_symbol_vector.push_back(TokenId::colon);
   m_symbol_vector.push_back(TokenId::comma);
+  m_symbol_vector.push_back(TokenId::lbracket);
+  m_symbol_vector.push_back(TokenId::rbracket);
 }
 
-std::map<std::string, std::string> JsonParser::parse(const std::string& filename)
+JsonDict JsonParser::parse(const std::string& filename)
 {
-  m_data = std::map<std::string, std::string>();
+  JsonDict d;
+  
+  m_data.clear();
 
   m_instream.open(filename.c_str());
 
@@ -38,7 +42,7 @@ std::map<std::string, std::string> JsonParser::parse(const std::string& filename
 
   m_instream.close();
 
-  return std::map<std::string, std::string>();
+  return JsonDict();
 }
 
 int JsonParser::get_char()
@@ -147,6 +151,47 @@ bool JsonParser::string_symbol()
   return accept(TokenId::string_symbol_id);
 }
 
+bool JsonParser::string_list_symbol()
+{
+  bool success = false;
+  if(string_symbol())
+  {
+    std::cout << "Current s: " << m_prev_symbol << std::endl;
+    m_string_vector.push_back(m_prev_symbol);
+    if(accept(TokenId::comma))
+    {
+      return string_list_symbol();
+    }
+    else
+    {
+      success = true;
+    }
+  }
+
+  return success;
+}
+
+bool JsonParser::string_vector_symbol()
+{
+  std::cout << "string vector symbol" << std::endl;
+  bool success = false;
+
+  if(accept(TokenId::lbracket))
+  {
+    std::cout << "Accepting lbrack" <<std::endl;
+    m_string_vector.clear();
+
+    if(string_list_symbol())
+    {
+      if(accept(TokenId::rbracket))
+      {
+        success = true;
+      }
+    }
+  }
+  return success;
+}
+
 bool JsonParser::key_symbol()
 {
   bool success = string_symbol();
@@ -161,8 +206,18 @@ bool JsonParser::colon_symbol()
 
 bool JsonParser::value_symbol()
 {
-  bool success = string_symbol();
-  m_current_value = m_prev_symbol;
+  bool success = false;
+
+  if(string_symbol())
+  {
+    success = true;
+    m_current_value = m_prev_symbol;
+  }
+  else if(string_vector_symbol())
+  {
+    success = true;
+    m_data.setArray(m_current_key, m_string_vector);
+  }
   return success;
 }
 
@@ -174,7 +229,7 @@ bool JsonParser::dict_entry_symbol()
     {
       if(value_symbol())
       {
-        m_data[m_current_key] = m_current_value;
+        m_data.setString(m_current_key, m_current_value);
         return true;
       }
     }

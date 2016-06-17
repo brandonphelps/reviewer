@@ -20,8 +20,9 @@ public:
 
   std::vector<std::string> getArray(const std::string& key);
 
+  void clear();
+
 private:
-  std::map<std::string, int> m_map_map; // maps which map to use
   std::map<std::string, std::string> m_string_map;
   std::map<std::string, std::vector<std::string> > m_string_vector_map;
   std::map<std::string, JsonDict> m_dict_map;
