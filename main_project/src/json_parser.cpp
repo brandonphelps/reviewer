@@ -156,7 +156,6 @@ bool JsonParser::string_list_symbol()
   bool success = false;
   if(string_symbol())
   {
-    std::cout << "Current s: " << m_prev_symbol << std::endl;
     m_string_vector.push_back(m_prev_symbol);
     if(accept(TokenId::comma))
     {
@@ -173,12 +172,10 @@ bool JsonParser::string_list_symbol()
 
 bool JsonParser::string_vector_symbol()
 {
-  std::cout << "string vector symbol" << std::endl;
   bool success = false;
 
   if(accept(TokenId::lbracket))
   {
-    std::cout << "Accepting lbrack" <<std::endl;
     m_string_vector.clear();
 
     if(string_list_symbol())

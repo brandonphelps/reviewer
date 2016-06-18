@@ -17,14 +17,6 @@
 
 int main(int argc, char* argv[])
 {
-  std::cout << "Hello World!" << std::endl;
-  std::cout << "Args" << std::endl;
-  std::cout << argc << std::endl;
-  for(int i = 0; i < argc; i++)
-  {
-    std::cout << argv[i] << std::endl;
-  }
-
   //std::string filename = "/Users/Elemental/Documents/Projects/reviewer/book/ja/katakana.txt";
   //git_libgit2_init();
 
@@ -35,18 +27,7 @@ int main(int argc, char* argv[])
   else
   {
     JsonParser p;
-    std::cout << "Using reviewer config : " << argv[1] << std::endl;
-
     JsonDict reviewer_config = p.parse(argv[1]);
-    std::cout << "Project name : " << reviewer_config.getString("Project Name") << std::endl;
-
-    std::vector<std::string> book2 = reviewer_config.getArray("book 2");
-    std::cout << "Book2" << std::endl;
-    for(int i = 0; i < book2.size(); i++)
-    {
-      std::cout << book2[i] << std::endl;
-    }
-    std::cout << "book 3" << reviewer_config.getString("book 3") << std::endl;
     Questioner quizzer;
     quizzer.addBooklet(Booklet(reviewer_config.getString("book 1")));
     quizzer.performReview();

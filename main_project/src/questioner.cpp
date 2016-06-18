@@ -83,8 +83,6 @@ void Questioner::save()
 
 void Questioner::nextItems()
 {
-  std::cout << "Checking for next items" << std::endl;
-  
   int half_count = 0;
   int one_count = 0;
   int five_count = 0;
@@ -111,6 +109,7 @@ void Questioner::nextItems()
       }
     }
   }
+  std::cout << "Forcast" << std::endl;
   std::cout << "Items to review in 30 seconds: " << half_count << std::endl;
   std::cout << "Itmes to review in 1 minute: " << one_count << std::endl;
   std::cout << "Items to review in 5 minutes: " << five_count << std::endl;
